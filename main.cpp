@@ -37,38 +37,35 @@ void Input()
 
 void Process()
 {
+	int directionX = 0;
+	int directionY = 0;
+
 	// Process
 	if (keyCode == 'w')
 	{
-		if (world[playerY-1][playerX] != 1)
-		{
-			playerY--;
-		}
+		--directionY;
 	}
 	else if (keyCode == 's')
 	{
-		if (world[playerY + 1][playerX] != 1)
-		{
-			playerY++;
-		}
+		++directionY;
 	}
 	else if (keyCode == 'a')
 	{
-		if (world[playerY][playerX - 1] != 1)
-		{
-			playerX--;
-		}
+		--directionX;
 	}
 	else if (keyCode == 'd')
 	{
-		if (world[playerY][playerX+1] != 1)
-		{
-			playerX++;
-		}
+		++directionX;
 	}
 	else if (keyCode == 'q')
 	{
 		bIsRunning = false;
+	}
+
+	if (world[playerY + directionY][playerX + directionX] != 1)
+	{
+		playerY += directionY;
+		playerX += directionX;
 	}
 }
 
