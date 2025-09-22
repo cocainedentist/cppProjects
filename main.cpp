@@ -28,6 +28,16 @@ char sprites[10] = { ' ', '*', };
 
 int keyCode;
 
+bool Predict(int NewX, int NewY)
+{
+	if (world[NewY][NewX] == 0)
+	{
+		return true;
+	}
+
+	return false;
+}
+
 void Input()
 {
 	// Input
