@@ -47,35 +47,37 @@ void Input()
 
 void Process()
 {
-	int directionX = 0;
-	int directionY = 0;
-
-	// Process
 	if (keyCode == 'w')
 	{
-		--directionY;
+		if (Predict(playerX, playerY - 1))
+		{
+			playerY--;
+		}
 	}
 	else if (keyCode == 's')
 	{
-		++directionY;
+		if (Predict(playerX, playerY + 1))
+		{
+			playerY++;
+		}
 	}
 	else if (keyCode == 'a')
 	{
-		--directionX;
+		if (Predict(playerX - 1, playerY))
+		{
+			playerX--;
+		}
 	}
 	else if (keyCode == 'd')
 	{
-		++directionX;
+		if (Predict(playerX + 1, playerY))
+		{
+			playerX++;
+		}
 	}
 	else if (keyCode == 'q')
 	{
 		bIsRunning = false;
-	}
-
-	if (world[playerY + directionY][playerX + directionX] != 1)
-	{
-		playerY += directionY;
-		playerX += directionX;
 	}
 }
 
