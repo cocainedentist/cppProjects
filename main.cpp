@@ -2,15 +2,18 @@
 
 using namespace std;
 
-int main() {
-	int num[10] = { 0, };
-
-	for (int i = 6; i > 0; --i) {
-		for (int j = 6; j > 0; --j) {
-			if (i <= j) {
+int main()
+{
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			if (i > j)
+			{
 				cout << " ";
 			}
-			else {
+			else
+			{
 				cout << "*";
 			}
 		}
