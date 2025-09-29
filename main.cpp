@@ -63,11 +63,6 @@ void monsterMove()
 	{
 		++MonsterX;
 	}
-	else if (PlayerInput == 0)
-	{
-		MonsterX = MonsterX;
-		MonsterY = MonsterY;
-	}
 }
 
 void renderGame()
