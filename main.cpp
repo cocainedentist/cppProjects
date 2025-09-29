@@ -1,81 +1,40 @@
-// preprocessor
-#include <iostream> // no h = cpp standard
-#include <conio.h> // .h = c standard
+#include <iostream> //cpp standard
+#include <conio.h> //c standard
 
 using namespace std;
 
-// Load Level
-int world[10][10] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-};
-
 bool bIsRunning = true;
-int playerX = 1;
-int playerY = 1;
-char playerShape = 'P';
 
-// 사상 (Mapping)
-char sprites[10] = { ' ', '*', };
-
-int keyCode;
-
-bool Predict(int NewX, int NewY)
-{
-	if (world[NewY][NewX] == 0)
-	{
-		return true;
-	}
-
-	return false;
-}
+int PlayerX = 0;
+int PlayerY = 0;
+char PlayerShape = 'P';
+int KeyCode;
 
 void Input()
 {
-	// Input
-	keyCode = _getch();
+	KeyCode = _getch();
 	return;
 }
 
 void Process()
 {
-	if (keyCode == 'w')
+	if (KeyCode == 'w')
 	{
-		if (Predict(playerX, playerY - 1))
-		{
-			playerY--;
-		}
+		PlayerY--;
 	}
-	else if (keyCode == 's')
+	else if (KeyCode == 's')
 	{
-		if (Predict(playerX, playerY + 1))
-		{
-			playerY++;
-		}
+		PlayerY++;
 	}
-	else if (keyCode == 'a')
+	else if (KeyCode == 'a')
 	{
-		if (Predict(playerX - 1, playerY))
-		{
-			playerX--;
-		}
+		PlayerX--;
 	}
-	else if (keyCode == 'd')
+	else if (KeyCode == 'd')
 	{
-		if (Predict(playerX + 1, playerY))
-		{
-			playerX++;
-		}
+		PlayerX++;
 	}
-	else if (keyCode == 'q')
+	else if (KeyCode == 'q')
 	{
 		bIsRunning = false;
 	}
@@ -83,20 +42,24 @@ void Process()
 
 void Render()
 {
-	// Render();
 	system("cls");
-	for (int y = 0; y < 10; ++y)
+	for (int Y = 0; Y < 100; ++Y)
 	{
-		for (int x = 0; x < 10; ++x)
+		for (int X = 0; X < 100; ++X)
 		{
-			if (playerX == x && playerY == y)
+			if (PlayerX == X && PlayerY == Y)
 			{
-				cout << playerShape;
+				cout << PlayerShape;
+				break;
 			}
 			else
 			{
-				cout << sprites[world[y][x]];
+				cout << ' ';
 			}
+		}
+		if (PlayerY == Y)
+		{
+			break;
 		}
 		cout << endl;
 	}
@@ -104,17 +67,14 @@ void Render()
 
 int main()
 {
-	// STL Search Sort Algorithm
-	// 제공
-	// Container
-	// 자료구조 -> Data Structure(배열, index int) -> Map(인덱스 아무거나)
-	// 가변 크기 배열 -> Vector
-
-	// frame, deltaseconds
+	//frame, deltaseconds
+	Render();
 	while (bIsRunning)
 	{
 		Input();
 		Process();
 		Render();
 	}
+
+	return 0;
 }
