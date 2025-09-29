@@ -43,7 +43,34 @@ void playerMove()
 	}
 }
 
-void RenderGame()
+void monsterMove()
+{
+	int MovePos = rand() % 5;
+
+	if (MovePos == 1)
+	{
+		--MonsterY;
+	}
+	else if (MovePos == 2)
+	{
+		++MonsterY;
+	}
+	else if (MovePos == 3)
+	{
+		--MonsterX;
+	}
+	else if (MovePos == 4)
+	{
+		++MonsterX;
+	}
+	else if (PlayerInput == 0)
+	{
+		MonsterX = MonsterX;
+		MonsterY = MonsterY;
+	}
+}
+
+void renderGame()
 {
 	system("cls");
 	COORD MonsterPos = { MonsterX,MonsterY };
@@ -57,11 +84,13 @@ void RenderGame()
 
 int main()
 {
-	RenderGame();
+	srand((unsigned int)time(NULL));
+	renderGame();
 	while (IsPlay)
 	{
 		playerMove();
-		RenderGame();
+		monsterMove();
+		renderGame();
 	}
 	return 0;
 }
