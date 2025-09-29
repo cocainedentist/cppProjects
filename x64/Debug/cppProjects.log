@@ -1,4 +1,6 @@
 ﻿  main.cpp
-C:\cocainedentist\C++ Projects\cppProjects\cppProjects\main.cpp(43,16): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\cocainedentist\C++ Projects\cppProjects\cppProjects\main.cpp(43,24): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\cocainedentist\C++ Projects\cppProjects\cppProjects\main.cpp(49,23): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\cocainedentist\C++ Projects\cppProjects\cppProjects\main.cpp(49,32): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\cocainedentist\C++ Projects\cppProjects\cppProjects\main.cpp(53,22): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\cocainedentist\C++ Projects\cppProjects\cppProjects\main.cpp(53,30): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
   cppProjects.vcxproj -> C:\cocainedentist\C++ Projects\cppProjects\x64\Debug\cppProjects.exe

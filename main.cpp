@@ -4,54 +4,64 @@
 
 using namespace std;
 
-char playerShape = 'P';
-int playerX = 0;
-int playerY = 0;
+#define MX 5
+#define MY 5
 
-int playerInput;
-bool isPlay = true;
+char PlayerShape = 'P';
+char MonsterShape = 'M';
+int PlayerX = 0;
+int PlayerY = 0;
+int MonsterX = MX;
+int MonsterY = MY;
+
+int PlayerInput;
+bool IsPlay = true;
 
 void playerMove()
 {
-	playerInput = _getch();
+	PlayerInput = _getch();
 
-	if (playerInput == 'w')
+	if (PlayerInput == 'w')
 	{
-		--playerY;
+		--PlayerY;
 	}
-	else if (playerInput == 's')
+	else if (PlayerInput == 's')
 	{
-		++playerY;
+		++PlayerY;
 	}
-	else if (playerInput == 'a')
+	else if (PlayerInput == 'a')
 	{
-		--playerX;
+		--PlayerX;
 	}
-	else if (playerInput == 'd')
+	else if (PlayerInput == 'd')
 	{
-		++playerX;
+		++PlayerX;
 	}
-	else if (playerInput == 'q')
+	else if (PlayerInput == 'q')
 	{
-		isPlay = false;
+		IsPlay = false;
 	}
 }
 
-void renderGame()
+void RenderGame()
 {
 	system("cls");
-	COORD pos = { playerX,playerY };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-	cout << playerShape << endl;
+	COORD MonsterPos = { MonsterX,MonsterY };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), MonsterPos);
+	cout << MonsterShape << endl;
+
+	COORD PlayerPos = { PlayerX,PlayerY };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), PlayerPos);
+	cout << PlayerShape << endl;
 }
 
 int main()
 {
-	renderGame();
-	while (isPlay)
+	RenderGame();
+	while (IsPlay)
 	{
 		playerMove();
-		renderGame();
+		RenderGame();
 	}
 	return 0;
 }
