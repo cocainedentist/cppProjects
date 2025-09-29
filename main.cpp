@@ -1,80 +1,57 @@
-#include <iostream> //cpp standard
-#include <conio.h> //c standard
+#include <iostream>
+#include <conio.h>
+#include <Windows.h>
 
 using namespace std;
 
-bool bIsRunning = true;
+char playerShape = 'P';
+int playerX = 0;
+int playerY = 0;
 
-int PlayerX = 0;
-int PlayerY = 0;
-char PlayerShape = 'P';
-int KeyCode;
+int playerInput;
+bool isPlay = true;
 
-void Input()
+void playerMove()
 {
-	KeyCode = _getch();
-	return;
-}
+	playerInput = _getch();
 
-void Process()
-{
-	if (KeyCode == 'w')
+	if (playerInput == 'w')
 	{
-		PlayerY--;
+		--playerY;
 	}
-	else if (KeyCode == 's')
+	else if (playerInput == 's')
 	{
-		PlayerY++;
+		++playerY;
 	}
-	else if (KeyCode == 'a')
+	else if (playerInput == 'a')
 	{
-		PlayerX--;
+		--playerX;
 	}
-	else if (KeyCode == 'd')
+	else if (playerInput == 'd')
 	{
-		PlayerX++;
+		++playerX;
 	}
-	else if (KeyCode == 'q')
+	else if (playerInput == 'q')
 	{
-		bIsRunning = false;
+		isPlay = false;
 	}
 }
 
-void Render()
+void renderGame()
 {
 	system("cls");
-	for (int Y = 0; Y < 100; ++Y)
-	{
-		for (int X = 0; X < 100; ++X)
-		{
-			if (PlayerX == X && PlayerY == Y)
-			{
-				cout << PlayerShape;
-				break;
-			}
-			else
-			{
-				cout << ' ';
-			}
-		}
-		if (PlayerY == Y)
-		{
-			break;
-		}
-		cout << endl;
-	}
+	COORD pos = { playerX,playerY };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	cout << playerShape << endl;
 }
 
 int main()
 {
-	//frame, deltaseconds
-	Render();
-	while (bIsRunning)
+	renderGame();
+	while (isPlay)
 	{
-		Input();
-		Process();
-		Render();
+		playerMove();
+		renderGame();
 	}
-
 	return 0;
 }
