@@ -17,7 +17,7 @@ int MonsterY = MY;
 int PlayerInput;
 bool IsPlay = true;
 
-void playerMove()
+void PlayerMove()
 {
 	PlayerInput = _getch();
 
@@ -43,7 +43,7 @@ void playerMove()
 	}
 }
 
-void monsterMove()
+void MonsterMove()
 {
 	int MovePos = rand() % 5;
 
@@ -65,7 +65,7 @@ void monsterMove()
 	}
 }
 
-void renderGame()
+void RenderGame()
 {
 	system("cls");
 	COORD MonsterPos = { MonsterX,MonsterY };
@@ -80,12 +80,13 @@ void renderGame()
 int main()
 {
 	srand((unsigned int)time(NULL));
-	renderGame();
+	RenderGame();
 	while (IsPlay)
 	{
-		playerMove();
-		monsterMove();
-		renderGame();
+		PlayerMove();
+		MonsterMove();
+		RenderGame();
+		cout << PlayerX << " " << PlayerY << "    " << MonsterX << " " << MonsterY;
 	}
 	return 0;
 }
