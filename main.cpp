@@ -1,92 +1,58 @@
 #include <iostream>
-#include <conio.h>
-#include <Windows.h>
 
 using namespace std;
 
-#define MX 5
-#define MY 5
+int N = 0;
+long long int X[2 ^ 18] = { 0, };
+long long int ResultValue[2 ^ 18] = { 0, };
 
-char PlayerShape = 'P';
-char MonsterShape = 'M';
-int PlayerX = 0;
-int PlayerY = 0;
-int MonsterX = MX;
-int MonsterY = MY;
-
-int PlayerInput;
-bool IsPlay = true;
-
-void PlayerMove()
+void Input()
 {
-	PlayerInput = _getch();
+	cin >> N;
+	for (int i = 0; i < N; ++i)
+	{
+		cin >> X[i];
+		// cout << X[i] << endl;
+	} // 숫자까지 다 입력받고
+}
 
-	if (PlayerInput == 'w')
+void NPOT()
+{
+	int j = 0;
+	for (int i = 0; i < N; ++i)
 	{
-		--PlayerY;
-	}
-	else if (PlayerInput == 's')
-	{
-		++PlayerY;
-	}
-	else if (PlayerInput == 'a')
-	{
-		--PlayerX;
-	}
-	else if (PlayerInput == 'd')
-	{
-		++PlayerX;
-	}
-	else if (PlayerInput == 'q')
-	{
-		IsPlay = false;
+		int a = 2;
+		bool isTrue = true;
+
+		while (isTrue)
+		{
+			if (a >= X[j])
+			{
+				ResultValue[j] = a;
+				isTrue = false;
+				++j;
+			}
+			else
+			{
+				a = a * 2;
+			}
+		}
 	}
 }
 
-void MonsterMove()
+void Output()
 {
-	int MovePos = rand() % 5;
-
-	if (MovePos == 1)
+	for (int i = 0; i < N; ++i)
 	{
-		--MonsterY;
+		ResultValue[i + 1] = ResultValue[i + 1] ^ ResultValue[i];
 	}
-	else if (MovePos == 2)
-	{
-		++MonsterY;
-	}
-	else if (MovePos == 3)
-	{
-		--MonsterX;
-	}
-	else if (MovePos == 4)
-	{
-		++MonsterX;
-	}
-}
-
-void RenderGame()
-{
-	system("cls");
-	COORD MonsterPos = { MonsterX,MonsterY };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), MonsterPos);
-	cout << MonsterShape << endl;
-
-	COORD PlayerPos = { PlayerX,PlayerY };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), PlayerPos);
-	cout << PlayerShape << endl;
+	cout << "\n" << ResultValue[N];
 }
 
 int main()
 {
-	srand((unsigned int)time(NULL));
-	RenderGame();
-	while (IsPlay)
-	{
-		PlayerMove();
-		MonsterMove();
-		RenderGame();
-		cout << PlayerX << " " << PlayerY << "    " << MonsterX << " " << MonsterY;
-	}
-	return 0;
+	Input();
+	NPOT();
+	Output();
+	
 }
