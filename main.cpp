@@ -3,17 +3,16 @@
 using namespace std;
 
 int N = 0;
-long long int X[2 ^ 18] = { 0, };
-long long int ResultValue[2 ^ 18] = { 0, };
+unsigned long long X[2 ^ 18] = { 0, };
+unsigned long long ResultValue[2 ^ 18] = { 0, };
 
 void Input()
 {
 	cin >> N;
-	for (int i = 0; i < N; ++i)
+	for (int i = 0; i < N; ++i)	
 	{
 		cin >> X[i];
-		// cout << X[i] << endl;
-	} // 숫자까지 다 입력받고
+	}
 }
 
 void NPOT()
@@ -54,5 +53,4 @@ int main()
 	Input();
 	NPOT();
 	Output();
-	
 }
